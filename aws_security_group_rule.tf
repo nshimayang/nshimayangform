@@ -27,3 +27,13 @@ resource "aws_security_group_rule" "web_allow_22" {
 
   security_group_id = "${aws_security_group.web-sg.id}"
 }
+
+resource "aws_security_group_rule" "db_allow_3306_from_web" {
+  type            = "ingress"
+  from_port       = 3306
+  to_port         = 3306
+  protocol        = "tcp"
+  source_security_group_id = "${aws_security_group.web-sg.id}"
+
+  security_group_id = "${aws_security_group.db-sg.id}"
+}

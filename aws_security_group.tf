@@ -33,3 +33,21 @@ resource "aws_security_group" "web-sg" {
     Environment = "${terraform.env}"
   }
 }
+
+resource "aws_security_group" "db-sg" {
+  name        = "db-sg"
+  description = "Allow 3306 From web-sg inbound traffic"
+  vpc_id      = "${aws_vpc.main.id}"
+
+  egress {
+    from_port       = 0
+    to_port         = 0
+    protocol        = "-1"
+    cidr_blocks     = ["0.0.0.0/0"]
+  }
+
+  tags {
+    Name = "${terraform.env}-db-sg"
+    Environment = "${terraform.env}"
+  }
+}
