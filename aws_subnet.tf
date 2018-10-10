@@ -9,6 +9,7 @@ resource "aws_subnet" "public_a" {
   vpc_id     = "${aws_vpc.main.id}"
   cidr_block = "${local.public_a_cidr}"
   availability_zone = "ap-northeast-1a"
+  map_public_ip_on_launch = true
 
   tags {
     Name = "${terraform.env}-public-subnet-a"
@@ -20,12 +21,14 @@ resource "aws_subnet" "public_c" {
   vpc_id     = "${aws_vpc.main.id}"
   cidr_block = "${local.public_c_cidr}"
   availability_zone = "ap-northeast-1c"
+  map_public_ip_on_launch = true
 
   tags {
     Name = "${terraform.env}-public-subnet-c"
     Environment = "${terraform.env}"
   }
 }
+
 resource "aws_subnet" "private_a" {
   vpc_id     = "${aws_vpc.main.id}"
   cidr_block = "${local.private_a_cidr}"
