@@ -6,3 +6,5 @@ variable "public_a"  {}
 variable "public_c"  {}
 variable "private_a" {}
 variable "private_c" {}
+variable "dbuser"     {}
+variable "dbpassword" {}
