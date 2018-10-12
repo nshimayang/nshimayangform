@@ -1,5 +1,5 @@
 resource "aws_db_parameter_group" "default" {
-  name   = "${terraform.env}-pg"
+  name   = "${terraform.env}-parameter-g"
   family = "mysql5.7"
 
   parameter {
@@ -13,7 +13,7 @@ resource "aws_db_parameter_group" "default" {
   }
 
   tags {
-    Name = "${terraform.env}-pg"
+    Name = "${terraform.env}-parameter-g"
     Environment = "${terraform.env}"
   }
 }
