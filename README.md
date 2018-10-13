@@ -1,8 +1,7 @@
 # nshimayangform
 :Download Terraform(v0.11.8)
-
-wget https://releases.hashicorp.com/terraform/0.11.8/terraform_0.11.8_linux_amd64.zip  
-unzip terraform_0.11.8_linux_amd64.zip -d /usr/local/bin  
+wget https://releases.hashicorp.com/terraform/0.11.8/terraform_0.11.8_linux_amd64.zip
+unzip terraform_0.11.8_linux_amd64.zip -d /usr/local/bin
 
 :Download Git Repository(nshimayangform)
 
@@ -16,15 +15,15 @@ terraform init
 :Check Execution Plan
 
 terraform plan \  
- -var "aws_access_key=<access key>"  \  
- -var "aws_secret_key=<secret access key>" \  
- -var "dbuser=<db user>" \  
- -var "dbpassword=<db password>" 
+ -var "aws_access_key=access_key"  \  
+ -var "aws_secret_key=secret_access_key" \  
+ -var "dbuser=db_user" \  
+ -var "dbpassword=db_password" 
 
 :Apply Execution Plan
 
 terraform apply \  
- -var "aws_access_key=<access key>"  \  
- -var "aws_secret_key=<secret access key>" \  
- -var "dbuser=<db user>" \  
- -var "dbpassword=<db password>" 
+ -var "aws_access_key=access_key"  \  
+ -var "aws_secret_key=secret_access_key" \  
+ -var "dbuser=db_user" \  
+ -var "dbpassword=db_password" 
