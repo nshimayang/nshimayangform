@@ -5,7 +5,7 @@ resource "aws_db_instance" "default-db" {
   engine               = "mysql"
   engine_version       = "5.7.23"
   instance_class       = "db.t2.micro"
-  name                 = "nshimayangform"
+  name                 = "nshimayangformdb"
   username             = "${var.dbuser}"
   password             = "${var.dbpassword}"
   parameter_group_name = "${aws_db_parameter_group.default.id}"
