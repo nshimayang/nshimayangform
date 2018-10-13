@@ -18,7 +18,8 @@ terraform plan \
  -var "aws_access_key=access_key"  \  
  -var "aws_secret_key=secret_access_key" \  
  -var "dbuser=db_user" \  
- -var "dbpassword=db_password" 
+ -var "dbpassword=db_password" \  
+ -var "ssh_key_name=keypairname(Default:nshimayangform)"
 
 :Apply Execution Plan
 
@@ -26,4 +27,5 @@ terraform apply \
  -var "aws_access_key=access_key"  \  
  -var "aws_secret_key=secret_access_key" \  
  -var "dbuser=db_user" \  
- -var "dbpassword=db_password" 
+ -var "dbpassword=db_password" \  
+ -var "ssh_key_name=keypairname(Default:nshimayangform)"

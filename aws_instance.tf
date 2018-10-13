@@ -8,7 +8,7 @@ resource "aws_instance" "web-a" {
   user_data = "${data.template_file.user_data.rendered}"
   subnet_id = "${aws_subnet.public_a.id}"
   associate_public_ip_address = true
-  key_name = "nshimayangform"
+  key_name = "${var.ssh_key_name}"
   # iam_instance_profile = 
   vpc_security_group_ids = ["${aws_security_group.web-sg.id}"]
   root_block_device {
@@ -33,7 +33,7 @@ resource "aws_instance" "web-c" {
   user_data = "${data.template_file.user_data.rendered}"
   subnet_id = "${aws_subnet.public_c.id}"
   associate_public_ip_address = true
-  key_name = "nshimayangform"
+  key_name = "${var.ssh_key_name}"
   # iam_instance_profile = 
   vpc_security_group_ids = ["${aws_security_group.web-sg.id}"]
   root_block_device {

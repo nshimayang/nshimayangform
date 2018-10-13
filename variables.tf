@@ -8,3 +8,4 @@ variable "private_a" {}
 variable "private_c" {}
 variable "dbuser"     {}
 variable "dbpassword" {}
+variable "ssh_key_name" {  default = "nshimayangform"}
