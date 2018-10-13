@@ -32,6 +32,11 @@ resource "aws_elb" "elb" {
   connection_draining         = true
   connection_draining_timeout = 300
 
+  depends_on = [
+      "aws_instance.web-a",
+      "aws_instance.web-c"
+  ]
+
   tags {
     Name = "${terraform.env}-elb"
     Environment = "${terraform.env}"

@@ -16,6 +16,11 @@ resource "aws_instance" "web-a" {
       volume_size = "30"
       delete_on_termination = "true"
   }
+
+  depends_on = [
+      "aws_db_instance.default-db"
+  ]
+
   tags {
     Name = "${terraform.env}-web-az-a"
     Environment = "${terraform.env}"
@@ -36,6 +41,11 @@ resource "aws_instance" "web-c" {
       volume_size = "30"
       delete_on_termination = "true"
   }
+
+  depends_on = [
+      "aws_db_instance.default-db"
+  ]
+
   tags {
     Name = "${terraform.env}-web-az-c"
     Environment = "${terraform.env}"
