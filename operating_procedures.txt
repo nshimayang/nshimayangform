@@ -1,0 +1,79 @@
+■VPC関連
+VPC作成（CIDR：10.0.0.0/16）
+IGW作成
+サブネット作成
+	public_a （CIDR：10.0.1.0/24）
+	public_c （CIDR：10.0.2.0/24）
+	private_a（CIDR：10.0.3.0/24）
+	private_c（CIDR：10.0.4.0/24）
+外部用ルートテーブル作成
+	0.0.0.0/0	IGW
+サブネットアタッチ
+	public_a （CIDR：10.0.1.0/24）
+	public_c （CIDR：10.0.2.0/24）
+
+■セキュリティグループ関連
+セキュリティグループ作成
+	ELB用
+		80番開放
+	WEB用
+		22番開放
+		80番：ELB用SGのみ
+	DB用
+		INBOUND：3306番：WEB用SGのみ
+		OUTBOUND：3306番：WEB用SGのみ
+
+■RDS関連
+DBサブネットグループ作成
+	private_a（CIDR：10.0.3.0/24）
+	private_c（CIDR：10.0.4.0/24）
+オプショングループ作成
+	MySQL5.7用
+パラメータグループ作成
+	MySQL5.7用
+	slow_query_log	1
+	long_query_time	3
+DBインスタンス作成
+	エンジン：MySQL5.7
+	MultiAZ：Yes
+	DB用SG
+	初期DB：nshimayangformdb
+	USER：nshimayangform
+	PASS：任意
+	DBサブネットグループ
+	オプショングループ
+	パラメータグループ
+
+■IAM関連
+WEBサーバ用IAMロール作成（web-role）
+
+■EC2関連
+EC2作成
+	USER DATA
+	-------
+	#!/bin/bash
+	# for userdata
+
+	/usr/bin/yum install -y httpd mysql57
+	/sbin/chkconfig httpd on
+	/bin/echo "I'm `/usr/bin/curl -s http://169.254.169.254/latest/meta-data/instance-id`" > /var/www/html/index.html
+	/sbin/service httpd start
+	-------
+
+	1台目
+		サブネット：public_a （CIDR：10.0.1.0/24）
+		AMI：Amazon Linux AMI
+		USER DATA導入
+		WEB用SG
+		IAMロール
+
+	2台目
+		サブネット：public_c （CIDR：10.0.2.0/24）
+		AMI：Amazon Linux AMI
+		USER DATA導入
+		WEB用SG
+		IAMロール
+
+ELB作成
+	CLB
+	ヘルスチェックパス：index.html
