@@ -9,7 +9,7 @@ resource "aws_instance" "web-a" {
   subnet_id = "${aws_subnet.public_a.id}"
   associate_public_ip_address = true
   key_name = "${var.ssh_key_name}"
-  # iam_instance_profile = 
+  iam_instance_profile = "${aws_iam_instance_profile.web-role-profile.name}"
   vpc_security_group_ids = ["${aws_security_group.web-sg.id}"]
   root_block_device {
       volume_type = "gp2"
@@ -34,7 +34,7 @@ resource "aws_instance" "web-c" {
   subnet_id = "${aws_subnet.public_c.id}"
   associate_public_ip_address = true
   key_name = "${var.ssh_key_name}"
-  # iam_instance_profile = 
+  iam_instance_profile = "${aws_iam_instance_profile.web-role-profile.name}"
   vpc_security_group_ids = ["${aws_security_group.web-sg.id}"]
   root_block_device {
       volume_type = "gp2"
